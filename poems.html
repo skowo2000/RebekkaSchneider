@@ -58,7 +58,9 @@
     <script>
         // Sanftes Einblenden der Seite
         document.addEventListener("DOMContentLoaded", function () {
-            document.body.style.opacity = 1;
+            setTimeout(() => {
+                document.body.style.opacity = 1; // Einblenden nach kurzer Verzögerung
+            }, 50); // Verzögerung, um sicherzustellen, dass das CSS greift
 
             // Textdatei laden und anzeigen
             fetch('12poems.txt')
