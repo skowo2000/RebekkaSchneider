@@ -11,11 +11,13 @@
             background-color: #A8D5BA; /* Ein Farbton zwischen Lichtgrün und Pastelltürkis */
             margin: 0;
             padding: 0;
-            opacity: 1; /* Sichtbarkeit der Seite */
-            transition: opacity 0.5s ease-in-out; /* Übergang für das Ausblenden */
+            opacity: 0; /* Unsichtbar beim Start */
+            transition: opacity 0.5s ease-in-out; /* Übergang für Ein- und Ausblenden */
         }
 
-        
+        .container {
+            margin: 80px 20px;
+        }
 
         .logo {
             width: 200px;
@@ -40,10 +42,15 @@
         }
     </style>
     <script>
-        // Füge Event-Listener für Link-Klicks hinzu
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
+            // Sanftes Einblenden der Seite
+            setTimeout(() => {
+                document.body.style.opacity = 1;
+            }, 50);
+
+            // Sanftes Ausblenden beim Klick auf einen Link
             document.querySelectorAll('.links a').forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault(); // Standard-Link-Verhalten stoppen
                     const href = this.href; // Ziel-URL speichern
                     document.body.style.opacity = 0; // Seite ausblenden
@@ -56,15 +63,13 @@
     </script>
 </head>
 <body>
-    
-
     <div class="container">
         <h1>Rebekka Schneider</h1>
         <img src="Logo_Rebekka-transp.png" alt="Rebekka Logo" class="logo">
         <div class="links">
-            <a href="drawings.html">drawings</a>
-            <a href="poems.html">poems</a>
-            <a href="imageengineering.html">imageeneering</a>
+            <a href="drawings.html">zeichnungen</a>
+            <a href="poems.html">gedichte</a>
+            <a href="photos.html">fotografien</a>
         </div>
     </div>
 </body>

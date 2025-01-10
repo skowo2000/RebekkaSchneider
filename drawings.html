@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rebekka Schneider - Poems</title>
+    <title>Rebekka Schneider - Drawings</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             opacity: 0; /* Unsichtbar beim Start */
-            transition: opacity 1s ease-in-out; /* Sanftes Einblenden */
+            transition: opacity 0.5s ease-in-out; /* Sanftes Einblenden */
         }
 
         .header {
@@ -44,31 +44,31 @@
             padding: 20px;
         }
 
-        .poem {
-            border-radius: 10px;
-            margin: 20px auto;
-            width: 80%;
-            text-align: left; /* linksbündig */
-            white-space: pre-line; /* Zeilenumbrüche (\n) aus der Textdatei anzeigen */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
     <script>
-        // Sanftes Einblenden der Seite
         document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => {
-                document.body.style.opacity = 1; // Einblenden nach kurzer Verzögerung
-            }, 50); // Verzögerung, um sicherzustellen, dass das CSS greift
-
-            // Textdatei laden und anzeigen
-            fetch('12poems.txt')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('poem-container').textContent = data; // Text in Container einfügen
-                })
-                .catch(error => {
-                    document.getElementById('poem-container').textContent = 'Fehler beim Laden des Gedichts.';
-                    console.error('Fehler:', error);
-                });
+                document.body.style.opacity = 1; // Sanftes Einblenden
+            }, 50);
         });
     </script>
 </head>
@@ -79,9 +79,15 @@
     </div>
 
     <div class="content">
-        <h1>gedichte</h1>
-        <div id="poem-container" class="poem">
-            Gedicht wird geladen...
+        <h1>zeichnungen</h1>
+        <div class="gallery">
+            <!-- Bilder aus dem Ordner Drawings -->
+            <img src="Drawings/Drawing01.jpg" alt="Drawing 01">
+            <img src="Drawings/Drawing02.jpg" alt="Drawing 02">
+            <img src="Drawings/Drawing03.jpg" alt="Drawing 03">
+            <img src="Drawings/Drawing04.jpg" alt="Drawing 04">
+            <img src="Drawings/Drawing05.jpg" alt="Drawing 05">
+            <img src="Drawings/Drawing06.jpg" alt="Drawing 06">
         </div>
     </div>
 </body>
