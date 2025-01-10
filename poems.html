@@ -11,11 +11,10 @@
             background-color: #A8D5BA; /* Ein Farbton zwischen Lichtgrün und Pastelltürkis */
             margin: 0;
             padding: 0;
-            opacity: 0; /* Startzustand für Einblendung */
-            transition: opacity 0.5s ease-in-out; /* Einblendübergang */
+            opacity: 0; /* Unsichtbar beim Start */
+            transition: opacity 0.5s ease-in-out; /* Sanftes Einblenden */
         }
 
-        /* Header Styling */
         .header {
             display: flex;
             align-items: center;
@@ -41,7 +40,7 @@
         }
 
         .content {
-            margin-top: 80px; /* Abstand, damit der Header den Inhalt nicht überdeckt */
+            margin-top: 80px;
             padding: 20px;
         }
 
@@ -54,18 +53,18 @@
             width: 80%;
             text-align: center; /* Zentriere alle Zeilen im Text */
             white-space: pre-line; /* Zeilenumbrüche (\n) aus der Textdatei anzeigen */
-        }   
+        }
     </style>
     <script>
-        // Seite einblenden
-        document.addEventListener("DOMContentLoaded", function() {
+        // Sanftes Einblenden der Seite
+        document.addEventListener("DOMContentLoaded", function () {
             document.body.style.opacity = 1;
 
-            // Gedicht aus der Datei laden
+            // Textdatei laden und anzeigen
             fetch('12poems.txt')
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById('poem-container').textContent = data;
+                    document.getElementById('poem-container').textContent = data; // Text in Container einfügen
                 })
                 .catch(error => {
                     document.getElementById('poem-container').textContent = 'Fehler beim Laden des Gedichts.';
