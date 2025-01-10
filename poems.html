@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebekka Schneider - Poems</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #A8D5BA; /* Ein Farbton zwischen Lichtgrün und Pastelltürkis */
+            margin: 0;
+            padding: 0;
+            opacity: 0; /* Startzustand für Einblendung */
+            transition: opacity 0.5s ease-in-out; /* Einblendübergang */
+        }
+
+        /* Header Styling */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #A8D5BA;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: none;
+        }
+
+        .logo-small {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            margin: 0;
+            color: #333;
+        }
+
+        .content {
+            margin-top: 80px; /* Abstand, damit der Header den Inhalt nicht überdeckt */
+            padding: 20px;
+        }
+
+        .poem {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            text-align: left;
+        }
+    </style>
+    <script>
+        // Seite einblenden
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.opacity = 1;
+
+            // Gedicht aus der Datei laden
+            fetch('12poems.txt')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('poem-container').textContent = data;
+                })
+                .catch(error => {
+                    document.getElementById('poem-container').textContent = 'Fehler beim Laden des Gedichts.';
+                    console.error('Fehler:', error);
+                });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <img src="Logo_Rebekka-transp.png" alt="Rebekka Logo" class="logo-small">
+        <h1>Rebekka Schneider</h1>
+    </div>
+
+    <div class="content">
+        <h1>Gedichte</h1>
+        <div id="poem-container" class="poem">
+            Gedicht wird geladen...
+        </div>
+    </div>
+</body>
+</html>

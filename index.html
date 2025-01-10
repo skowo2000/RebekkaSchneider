@@ -11,6 +11,8 @@
             background-color: #A8D5BA; /* Ein Farbton zwischen Lichtgrün und Pastelltürkis */
             margin: 0;
             padding: 0;
+            opacity: 1; /* Sichtbarkeit der Seite */
+            transition: opacity 0.5s ease-in-out; /* Übergang für das Ausblenden */
         }
 
         /* Header Styling */
@@ -18,7 +20,7 @@
             display: flex;
             align-items: center;
             padding: 10px 20px;
-            background-color: #A8D5BA; /* Transparent statt Weiß */
+            background-color: #A8D5BA; /* Hintergrund passend zur Seite */
             position: fixed;
             top: 0;
             left: 0;
@@ -64,6 +66,21 @@
             color: #007acc;
         }
     </style>
+    <script>
+        // Füge Event-Listener für Link-Klicks hinzu
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Standard-Link-Verhalten stoppen
+                    const href = this.href; // Ziel-URL speichern
+                    document.body.style.opacity = 0; // Seite ausblenden
+                    setTimeout(() => {
+                        window.location.href = href; // Neue Seite nach 500ms laden
+                    }, 500); // Timeout entspricht der CSS-Übergangszeit
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="header">
@@ -75,9 +92,9 @@
         <h1>Rebekka Schneider</h1>
         <img src="Logo_Rebekka-transp.png" alt="Rebekka Logo" class="logo">
         <div class="links">
-            <a href="#drawings">drawings</a>
-            <a href="#poems">poems</a>
-            <a href="#imageeneering">imageeneering</a>
+            <a href="drawings.html">drawings</a>
+            <a href="poems.html">poems</a>
+            <a href="imageengineering.html">imageeneering</a>
         </div>
     </div>
 </body>
