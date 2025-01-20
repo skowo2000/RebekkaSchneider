@@ -7,10 +7,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: left;
+            text-align: left; /* Links ausgerichtet */
             background-color: #A8D5BA; /* Ein Farbton zwischen Lichtgrün und Pastelltürkis */
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            padding: 0;
             opacity: 0; /* Unsichtbar beim Start */
             transition: opacity 1s ease-in-out; /* Sanftes Einblenden */
         }
@@ -18,7 +18,7 @@
         .header {
             display: flex;
             align-items: center;
-            padding: 10px 20px;
+            padding: 10px 20px; /* Abstand links und rechts */
             background-color: #A8D5BA;
             position: fixed;
             top: 0;
@@ -40,15 +40,21 @@
         }
 
         .content {
-            margin-top: 80px;
-            padding: 20px;
+            margin-top: 80px; /* Platz für den fixierten Header */
+            padding: 10px 20px; /* Gleicher Abstand wie im Header */
+        }
+
+        .content h1 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-left: 50px; /* Gleicher Abstand wie der Text "Rebekka Schneider" */
         }
 
         .poem {
-            border-radius: 10px;
-            margin: 20px auto;
-            width: 80%;
-            text-align: left; /* linksbündig */
+            margin: 0; /* Kein zusätzlicher Abstand */
+            padding-left: 50px; /* Gleicher Abstand wie der Text "Rebekka Schneider" */
             white-space: pre-line; /* Zeilenumbrüche (\n) aus der Textdatei anzeigen */
         }
     </style>
