@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 1s ease-in-out;
         }
 
         .header {
@@ -101,11 +101,24 @@
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+       // Sanftes Einblenden der Seite
+       document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => {
                 document.body.style.opacity = 1; // Sanftes Einblenden
             }, 50);
+        // Sanftes Ausblenden beim Klick auf Links
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault(); // Verhindert das sofortige Wechseln der Seite
+                    const href = this.href; // Speichert die Ziel-URL
+                    document.body.style.opacity = 0; // Blendet die Seite aus
+                    setTimeout(() => {
+                        window.location.href = href; // Nach 1 Sekunde die neue Seite laden
+                    }, 1000); // Timeout entspricht der CSS-Übergangszeit
+                });
         });
+ });
+
     </script>
 </head>
 <body>
