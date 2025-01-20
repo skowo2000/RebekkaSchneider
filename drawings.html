@@ -66,38 +66,40 @@
         }
 
         /* Lightbox Styling */
-        .lightbox {
-            display: none; /* Unsichtbar, bis aktiviert */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+.lightbox {
+    display: none; /* Unsichtbar, bis aktiviert */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #7FB5B5; /* Neuer Hintergrundton */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Optionaler Schatten für Bilder */
+}
 
-        .lightbox:target {
-            display: flex; /* Sichtbar, wenn der Lightbox-Link angeklickt wird */
-        }
+.lightbox:target {
+    display: flex; /* Sichtbar, wenn der Lightbox-Link angeklickt wird */
+}
 
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 30px;
-            text-decoration: none;
-            cursor: pointer;
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
         }
     </style>
     <script>
