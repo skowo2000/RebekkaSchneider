@@ -19,10 +19,42 @@
             margin: 80px 20px;
         }
 
+        h1 {
+            position: relative;
+            font-size: 24px;
+            margin: 0; /* Kein zusätzlicher Abstand von der Überschrift */
+        }
+
+        .default-text,
+        .hover-text {
+            transition: opacity 0.5s ease-in-out;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        .default-text {
+            opacity: 1;
+        }
+
+        .hover-text {
+            opacity: 0;
+            font-family: "Dancing Script", cursive; /* Handschriftliche Schriftart */
+        }
+
+        h1:hover .default-text {
+            opacity: 0;
+        }
+
+        h1:hover .hover-text {
+            opacity: 1;
+        }
+
         .logo {
             width: 200px;
             height: auto;
-            margin: 20px auto;
+            margin: 50px auto 20px; /* Verschiebe das Logo mit margin-top */
         }
 
         .links {
@@ -34,13 +66,14 @@
             color: #333;
             font-size: 18px;
             margin: 0 15px;
-            transition: color 0.3s;
+            transition: color 1s;
         }
 
         .links a:hover {
             color: #007acc;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Sanftes Einblenden der Seite
@@ -64,12 +97,16 @@
 </head>
 <body>
     <div class="container">
-        <h1>Rebekka Schneider</h1>
+        <h1>
+            <span class="default-text">Rebekka Schneider</span>
+            <span class="hover-text">Kontakt: rebekka.schneider@gmx.de</span>
+        </h1>
         <img src="Logo_Rebekka-transp.png" alt="Rebekka Logo" class="logo">
         <div class="links">
-            <a href="drawings.html">zeichnungen</a>
-            <a href="poems.html">gedichte</a>
-            <a href="photos.html">fotografien</a>
+            <a href="gedichte.html">gedichte</a>
+            <a href="zeichnungen.html">zeichnungen</a>
+            <a href="fotografien.html">fotografien</a>
+            <a href="filmisches.html">filmisches</a>
         </div>
     </div>
 </body>
