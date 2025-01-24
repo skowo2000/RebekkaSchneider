@@ -1,94 +1,30 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rebekka Schneider</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #7FB5B5; /* Ein Farbton zwischen Lichtgrün und Pastelltürkis */
-            margin: 0;
-            padding: 0;
-            opacity: 0; /* Unsichtbar beim Start */
-            transition: opacity 0.5s ease-in-out; /* Übergang für Ein- und Ausblenden */
-        }
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Scrollposition zurücksetzen
+        window.scrollTo(0, 0);
 
-        .container {
-            margin: 80px 20px;
-        }
-
-        h1 {
-            font-size: 30px;
-            margin: 0;
-            white-space: nowrap; /* Kein Zeilenumbruch */
-        }
-
-        .logo {
-            width: 200px;
-            height: auto;
-            margin: 20px auto;
-        }
-
-        .links {
-            margin-top: 20px;
-        }
-
-        .links a {
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            margin: 0 15px;
-            transition: color 1s;
-        }
-
-        .links a:hover {
-            color: #007acc;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 24px; /* Kleinere Schrift für Mobilgeräte */
-            }
-            .links a {
-                font-size: 16px; /* Kleinere Schrift für Links */
-            }
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Scrollposition zurücksetzen
-            window.scrollTo(0, 0);
-            // Sanftes Einblenden der Seite
-            setTimeout(() => {
-                document.body.style.opacity = 1;
-            }, 50);
-
-            // Sanftes Ausblenden beim Klick auf einen Link
-            document.querySelectorAll('.links a').forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault(); // Standard-Link-Verhalten stoppen
-                    const href = this.href; // Ziel-URL speichern
-                    document.body.style.opacity = 0; // Seite ausblenden
-                    setTimeout(() => {
-                        window.location.href = href; // Neue Seite nach 500ms laden
-                    }, 500); // Timeout entspricht der CSS-Übergangszeit
-                });
+        // Lightbox öffnen und Gedicht laden
+        document.querySelectorAll('.titles a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault(); // Standardverhalten verhindern
+                const file = this.dataset.file; // Ziel-Datei für Gedicht
+                fetch(file)
+                    .then(response => response.text())
+                    .then(text => {
+                        const contentElement = document.querySelector('.lightbox-content');
+                        contentElement.textContent = text; // Gedicht einfügen
+                        document.querySelector('.lightbox').classList.add('active');
+                    })
+                    .catch(error => {
+                        alert('Fehler beim Laden des Gedichts.');
+                        console.error(error);
+                    });
             });
         });
-    </script>
-</head>
-<body>
-    <div class="container">
-        <h1>Rebekka Schneider</h1>
-        <img src="Logo_Rebekka-transp.png" alt="Rebekka Logo" class="logo">
-        <div class="links">
-            <a href="poetisch.html">poetisch</a>
-            <a href="zeichnungen.html">zeichnerisch</a>
-            <a href="fotografien.html">fotografisch</a>
-            <a href="filmisches.html">filmisch</a>
-        </div>
-    </div>
-</body>
-</html>
+
+        // Lightbox schließen
+        document.querySelector('.lightbox-close').addEventListener('click', function () {
+            document.querySelector('.lightbox').classList.remove('active');
+        });
+    });
+</script>
