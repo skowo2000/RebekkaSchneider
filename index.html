@@ -20,35 +20,9 @@
         }
 
         h1 {
-            position: relative;
-            font-size: 24px;
+            font-size: 30px;
             margin: 0;
-        }
-
-        .default-text,
-        .hover-text {
-            transition: opacity 0.5s ease-in-out;
-            position: absolute;
-            left: 50%;
-            top: 0;
-            transform: translateX(-50%);
-        }
-
-        .default-text {
-            opacity: 1;
-        }
-
-        .hover-text {
-            opacity: 0;
-            font-family: "Dancing Script", cursive; /* Handschriftliche Schriftart */
-        }
-
-        h1:hover .default-text {
-            opacity: 0;
-        }
-
-        h1:hover .hover-text {
-            opacity: 1;
+            white-space: nowrap; /* Kein Zeilenumbruch */
         }
 
         .logo {
@@ -73,18 +47,15 @@
             color: #007acc;
         }
 
-        /* Mobile Anpassungen */
-        @media (max-width: 800px) {
+        @media (max-width: 600px) {
             h1 {
-                font-size: 20px; /* Kleinere Schriftgröße für die Überschrift */
+                font-size: 24px; /* Kleinere Schrift für Mobilgeräte */
             }
             .links a {
-                font-size: 14px; /* Kleinere Schriftgröße für mobile Geräte */
-                margin: 0 5px; /* Weniger Abstand zwischen den Links */
+                font-size: 16px; /* Kleinere Schrift für Links */
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Sanftes Einblenden der Seite
@@ -108,16 +79,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>
-            <span class="default-text">Rebekka Schneider</span>
-            <span class="hover-text">Kontakt: rebekka.schneider@gmx.de</span>
-        </h1>
+        <h1>Rebekka Schneider</h1>
         <img src="Logo_Rebekka-transp.png" alt="Rebekka Logo" class="logo">
         <div class="links">
             <a href="poetisch.html">poetisch</a>
-            <a href="zeichnerisch.html">zeichnerisch</a>
-            <a href="fotografisch.html">fotografisch</a>
-            <a href="filmisch.html">filmisch</a>
+            <a href="zeichnungen.html">zeichnerisch</a>
+            <a href="fotografien.html">fotografisch</a>
+            <a href="filmisches.html">filmisch</a>
         </div>
     </div>
 </body>
