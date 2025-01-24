@@ -7,12 +7,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: left;
-            background-color: #7FB5B5; /* Ein Farbton zwischen Lichtgrün und Pastelltürkis */
+            text-align: left; /* Links ausgerichtet */
+            background-color: #7FB5B5;
             margin: 0;
             padding: 0;
-            opacity: 0; /* Unsichtbar beim Start */
-            transition: opacity 1s ease-in-out; /* Sanftes Ein- und Ausblenden */
         }
 
         .header {
@@ -41,31 +39,26 @@
 
         .content {
             margin-top: 80px; /* Platz für den fixierten Header */
-            padding: 20px;
+            padding: 10px 20px;
         }
 
         .content h1 {
             font-size: 30px;
             color: #333;
+            margin-top: 0;
             margin-bottom: 20px;
-            padding-left: 50px; /* Gleicher Abstand wie der Header-Text */
-        }
-
-        .titles {
-            padding-left: 50px; /* Gleicher Abstand wie der Header-Text */
         }
 
         .titles a {
             display: block;
             text-decoration: none;
-            color: #333;
             font-size: 18px;
-            margin: 10px 0;
-            transition: color 0.3s;
+            color: #007acc;
+            margin-bottom: 10px;
         }
 
         .titles a:hover {
-            color: #007acc;
+            text-decoration: underline;
         }
 
         /* Lightbox Styling */
@@ -76,7 +69,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.8); /* Hintergrund der Lightbox */
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -87,12 +80,19 @@
         }
 
         .lightbox-content {
-            background-color: white;
+            white-space: pre-line; /* Zeilenumbrüche anzeigen */
+            text-align: left; /* Links ausgerichtet */
+            margin: 20px;
+            font-size: 18px;
+            line-height: 1.6; /* Lesbare Zeilenhöhe */
+            color: #fff; /* Textfarbe weiß für Kontrast */
+            background: #444; /* Gedicht-Hintergrund in der Lightbox */
             padding: 20px;
             border-radius: 10px;
             max-width: 80%;
             max-height: 80%;
-            overflow-y: auto; /* Scrollbar für langen Text */
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
 
         .lightbox-close {
@@ -107,34 +107,16 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Sanftes Einblenden der Seite
-            setTimeout(() => {
-                document.body.style.opacity = 1; // Einblenden nach kurzer Verzögerung
-            }, 50);
-    
-            // Sanftes Ausblenden beim Klick auf Links außerhalb der Lightbox
-            document.querySelectorAll('.titles a, .header a').forEach(link => {
-                link.addEventListener('click', function (e) {
-                    if (!this.closest('.lightbox')) { // Prüfen, ob der Link innerhalb der Lightbox liegt
-                        e.preventDefault(); // Verhindert das sofortige Wechseln der Seite
-                        const href = this.href; // Speichert die Ziel-URL
-                        document.body.style.opacity = 0; // Blendet die Seite aus
-                        setTimeout(() => {
-                            window.location.href = href; // Neue Seite nach 1 Sekunde laden
-                        }, 1000); // Timeout entspricht der CSS-Übergangszeit
-                    }
-                });
-            });
-    
-            // Lightbox öffnen
+            // Lightbox öffnen und Gedicht laden
             document.querySelectorAll('.titles a').forEach(link => {
                 link.addEventListener('click', function (e) {
-                    e.preventDefault(); // Verhindert das Standardverhalten
+                    e.preventDefault(); // Standardverhalten verhindern
                     const file = this.dataset.file; // Ziel-Datei für Gedicht
                     fetch(file)
                         .then(response => response.text())
                         .then(text => {
-                            document.querySelector('.lightbox-content').textContent = text;
+                            const contentElement = document.querySelector('.lightbox-content');
+                            contentElement.textContent = text; // Gedicht einfügen
                             document.querySelector('.lightbox').classList.add('active');
                         })
                         .catch(error => {
@@ -143,14 +125,13 @@
                         });
                 });
             });
-    
+
             // Lightbox schließen
             document.querySelector('.lightbox-close').addEventListener('click', function () {
                 document.querySelector('.lightbox').classList.remove('active');
             });
         });
     </script>
-    
 </head>
 <body>
     <div class="header">
@@ -163,7 +144,7 @@
     <div class="content">
         <h1>poetisch</h1>
         <div class="titles">
-            <!-- Titel der Gedichte -->
+            <!-- Gedicht-Titel mit Links zu den Dateien -->
             <a href="#" data-file="Gedichte/01 Schutzengel.txt">Schutzengel</a>
             <a href="#" data-file="Gedichte/02 There is a land.txt">There is a land</a>
             <a href="#" data-file="Gedichte/03 Hinter den Dünen.txt">Hinter den Dünen</a>
@@ -181,10 +162,8 @@
 
     <!-- Lightbox -->
     <div class="lightbox">
+        <div class="lightbox-content"></div>
         <a href="#" class="lightbox-close">&times;</a>
-        <div class="lightbox-content">
-            <!-- Gedichtinhalt wird hier eingefügt -->
-        </div>
     </div>
 </body>
 </html>
