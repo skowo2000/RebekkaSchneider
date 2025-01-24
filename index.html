@@ -22,7 +22,7 @@
         h1 {
             position: relative;
             font-size: 24px;
-            margin: 0; /* Kein zusätzlicher Abstand von der Überschrift */
+            margin: 0;
         }
 
         .default-text,
@@ -54,19 +54,23 @@
         .logo {
             width: 200px;
             height: auto;
-            margin: 50px auto 20px; /* Verschiebe das Logo mit margin-top */
+            margin: 20px auto;
         }
 
         .links {
             margin-top: 20px;
+            display: flex;
+            justify-content: center; /* Zentriert die Links */
+            gap: 20px; /* Abstand zwischen den Links */
+            flex-wrap: nowrap; /* Keine Zeilenumbrüche */
         }
 
         .links a {
             text-decoration: none;
             color: #333;
             font-size: 18px;
-            margin: 0 15px;
             transition: color 1s;
+            white-space: nowrap; /* Verhindert Umbrüche innerhalb eines Links */
         }
 
         .links a:hover {
