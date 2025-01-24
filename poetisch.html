@@ -131,7 +131,12 @@
 
             // Lightbox schließen
             document.querySelector('.lightbox-close').addEventListener('click', function () {
-                document.querySelector('.lightbox').classList.remove('active');
+    // Gedicht hochscrollen
+    const contentElement = document.querySelector('.lightbox-content');
+    contentElement.scrollTop = 0;
+
+    // Lightbox schließen
+    document.querySelector('.lightbox').classList.remove('active');
             });
         });
     </script>
