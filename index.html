@@ -58,22 +58,24 @@
             margin: 50px auto 20px; /* Verschiebe das Logo mit margin-top */
         }
 
-        .links {
-            margin-top: 20px;
-        }
+.links {
+    margin-top: 20px;
+    white-space: nowrap; /* Kein Zeilenumbruch für den Container */
+}
 
-        .links a {
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            margin: 0 15px;
-            transition: color 1s;
-        }
+.links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    margin: 0 15px;
+    transition: color 1s;
+    display: inline-block; /* Sicherstellen, dass die Links in einer Zeile bleiben */
+    white-space: nowrap; /* Kein Zeilenumbruch für einzelne Links */
+}
 
-        .links a:hover {
-            color: #007acc;
-        }
-
+.links a:hover {
+    color: #007acc;
+}
         @media (max-width: 600px) {
             h1 {
                 font-size: 24px; /* Kleinere Schrift für Mobilgeräte */
