@@ -47,13 +47,14 @@
             color: #333;
             margin-top: 0;
             margin-bottom: 20px;
+            padding-left: 50px; /* Gleicher Abstand wie der Text "Rebekka Schneider" */
         }
 
         .titles {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Flexible Spalten */
             gap: 20px; /* Abstand zwischen den Titeln */
-            padding: 0 50px; /* Abstand vom Rand */
+            padding-left: 50px; /* Gleicher Abstand wie der Text "Rebekka Schneider" */
         }
 
     .titles a {
@@ -62,10 +63,11 @@
         font-size: 18px;
         color: #FF69B4; /* Rosa */
         margin-bottom: 10px;
-        text-align: center;
+        text-align: left;
         background: none; /* Keine Hintergrundfarbe */
         padding: 0; /* Kein innerer Abstand */
         border-radius: 0; /* Keine abgerundeten Ecken */
+        white-space: nowrap; /* Kein Zeilenumbruch */
     }
         /* Lightbox Styling */
         .lightbox {
