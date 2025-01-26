@@ -50,18 +50,24 @@
             padding-left: 50px; /* Gleicher Abstand wie der Text "Rebekka Schneider" */
         }
 
-        .titles a {
+        .titles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Flexible Spalten */
+            gap: 20px; /* Abstand zwischen den Titeln */
+            padding-left: 50px; /* Gleicher Abstand wie der Text "Rebekka Schneider" */
+        }
+
+    .titles a {
         display: block;
         text-decoration: none;
         font-size: 18px;
-        color: #FF69B4; /* Rosa (#FF69B4 ist ein kräftiger Pinkton) */
+        color: #FF69B4; /* Rosa */
         margin-bottom: 10px;
-        padding-left: 50px; /* Gleicher Abstand wie der Text "Rebekka Schneider" */
-    }
-
-    .titles a:hover {
-        text-decoration: underline;
-        color: #FF1493; /* Dunkleres Rosa beim Hover (#FF1493) */
+        text-align: left;
+        background: none; /* Keine Hintergrundfarbe */
+        padding: 0; /* Kein innerer Abstand */
+        border-radius: 0; /* Keine abgerundeten Ecken */
+        white-space: nowrap; /* Kein Zeilenumbruch */
     }
         /* Lightbox Styling */
         .lightbox {
@@ -131,12 +137,12 @@
 
             // Lightbox schließen
             document.querySelector('.lightbox-close').addEventListener('click', function () {
-    // Gedicht hochscrollen
-    const contentElement = document.querySelector('.lightbox-content');
-    contentElement.scrollTop = 0;
+                // Gedicht hochscrollen
+                const contentElement = document.querySelector('.lightbox-content');
+                contentElement.scrollTop = 0;
 
-    // Lightbox schließen
-    document.querySelector('.lightbox').classList.remove('active');
+                // Lightbox schließen
+                document.querySelector('.lightbox').classList.remove('active');
             });
         });
     </script>
