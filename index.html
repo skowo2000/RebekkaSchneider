@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -23,7 +24,7 @@
             position: relative;
             font-size: 30px;
             margin: 0;
-            white-space: nowrap; /* Kein Zeilenumbruch */
+            white-space: nowrap
         }
 
         .default-text,
@@ -54,35 +55,34 @@
 
         .logo {
             width: 200px;
+            max-width: 100%; /* Verhindert Überlaufen auf mobilen Geräten */
             height: auto;
             margin: 50px auto 20px; /* Verschiebe das Logo mit margin-top */
         }
 
-.links {
-    margin-top: 20px;
-    white-space: nowrap; /* Kein Zeilenumbruch für den Container */
-}
+        .links {
+            margin-top: 0px;
+        }
 
-.links a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    margin: 0 15px;
-    transition: color 1s;
-    display: inline-block; /* Sicherstellen, dass die Links in einer Zeile bleiben */
-    white-space: nowrap; /* Kein Zeilenumbruch für einzelne Links */
-}
+        .links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            margin: 0 15px;
+            transition: color 1s;
+        }
 
-.links a:hover {
-    color: #007acc;
-}
-        @media (max-width: 700px) {
+        .links a:hover {
+            color: #007acc;
+        }
+
+        @media (max-width: 800px) {
             h1 {
                 font-size: 24px; /* Kleinere Schrift für Mobilgeräte */
             }
             .links a {
-                font-size: 14px; /* Kleinere Schrift für Links */
-                margin: 0 5px; /* Weniger Abstand zwischen den Links */
+                font-size: 13px; /* Kleinere Schrift für Links */
+                margin: 0 2px; /* Weniger Abstand zwischen den Links */
             }
         }
     </style>
