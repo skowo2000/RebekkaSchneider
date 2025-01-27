@@ -132,7 +132,25 @@
         });
     });
 
-
+            // Lightbox öffnen und Gedicht laden
+            document.querySelectorAll('.titles a').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault(); // Standardverhalten verhindern
+                    const file = this.dataset.file; // Ziel-Datei für Gedicht
+                    fetch(file)
+                        .then(response => response.text())
+                        .then(text => {
+                            const contentElement = document.querySelector('.lightbox-content');
+                            contentElement.textContent = text; // Gedicht einfügen
+                            contentElement.scrollTop = 0; // Scrollposition zurücksetzen
+                            document.querySelector('.lightbox').classList.add('active');
+                        })
+                        .catch(error => {
+                            alert('Fehler beim Laden des Gedichts.');
+                            console.error(error);
+                        });
+                });
+            });
 
             // Lightbox schließen
             document.querySelector('.lightbox-close').addEventListener('click', function () {
