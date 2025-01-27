@@ -7,10 +7,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: left; /* Links ausgerichtet */
+            text-align: left; 
             background-color: #7FB5B5;
             margin: 0;
             padding: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;            
         }
 
         .header {
@@ -38,63 +40,59 @@
         }
 
         .content {
-            margin-top: 80px; /* Platz für den fixierten Header */
+            margin-top: 80px;
             padding: 10px 20px;
         }
 
         .content h1 {
             font-size: 30px;
             color: #333;
-            margin-top: 0;
-            margin-bottom: 20px;
-            padding-left: 50px; /* Gleicher Abstand wie der Text "Rebekka Schneider" */
+            margin: 0 0 20px;
+            padding-left: 50px;
         }
 
         .titles {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Flexible Spalten */
-            gap: 20px; /* Abstand zwischen den Titeln */
-            padding-left: 50px; /* Gleicher Abstand wie der Text "Rebekka Schneider" */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding-left: 50px;
         }
 
-    .titles a {
-        display: block;
-        text-decoration: none;
-        font-size: 18px;
-        color: #FF69B4; /* Rosa */
-        margin-bottom: 10px;
-        text-align: left;
-        background: none; /* Keine Hintergrundfarbe */
-        padding: 0; /* Kein innerer Abstand */
-        border-radius: 0; /* Keine abgerundeten Ecken */
-        white-space: nowrap; /* Kein Zeilenumbruch */
-    }
+        .titles a {
+            display: block;
+            text-decoration: none;
+            font-size: 18px;
+            color: #FF69B4;
+            text-align: left;
+            white-space: nowrap;
+        }
+
         /* Lightbox Styling */
         .lightbox {
-            display: none; /* Unsichtbar, bis aktiviert */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #7FB5B5; /* Hintergrund der Lightbox */
+            background-color: #7FB5B5;
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
 
         .lightbox.active {
-            display: flex; /* Sichtbar, wenn aktiv */
+            display: flex;
         }
 
         .lightbox-content {
-            white-space: pre-line; /* Zeilenumbrüche anzeigen */
-            text-align: left; /* Links ausgerichtet */
+            white-space: pre-line;
+            text-align: left;
             margin: 20px;
             font-size: 18px;
-            line-height: 1.6; /* Lesbare Zeilenhöhe */
-            color: #333; /* Textfarbe passend zur Seite */
-            background: #E3F4F4; /* Gedicht-Hintergrund in der Lightbox */
+            line-height: 1.6;
+            color: #333;
+            background: #E3F4F4;
             padding: 20px;
             border-radius: 10px;
             max-width: 80%;
@@ -115,36 +113,35 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Lightbox öffnen und Gedicht laden
-            document.querySelectorAll('.titles a').forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault(); // Standardverhalten verhindern
-                    const file = this.dataset.file; // Ziel-Datei für Gedicht
-                    fetch(file)
-                        .then(response => response.text())
-                        .then(text => {
-                            const contentElement = document.querySelector('.lightbox-content');
-                            contentElement.textContent = text; // Gedicht einfügen
-                            contentElement.scrollTop = 0; // Scrollposition zurücksetzen
-                            document.querySelector('.lightbox').classList.add('active');
-                        })
-                        .catch(error => {
-                            alert('Fehler beim Laden des Gedichts.');
-                            console.error(error);
-                        });
-                });
-            });
+// Sanftes Einblenden der Seite
+    setTimeout(() => {
+        document.body.style.opacity = 1;
+    }, 50);
+
+    // Sanftes Ausblenden beim Klick auf einen Link
+    document.querySelectorAll('.titles a, .header a').forEach(link => {
+        link.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href && !href.startsWith('#')) { // Links, die nicht "#" sind
+                e.preventDefault(); // Verhindert das sofortige Wechseln
+                document.body.style.opacity = 0; // Blendet die Seite aus
+                setTimeout(() => {
+                    window.location.href = href; // Nach 1 Sekunde neue Seite laden
+                }, 1000); // Timeout entspricht der CSS-Übergangszeit
+            }
+        });
+    });
+
+
 
             // Lightbox schließen
             document.querySelector('.lightbox-close').addEventListener('click', function () {
-                // Gedicht hochscrollen
                 const contentElement = document.querySelector('.lightbox-content');
                 contentElement.scrollTop = 0;
-
-                // Lightbox schließen
                 document.querySelector('.lightbox').classList.remove('active');
             });
         });
+
     </script>
 </head>
 <body>
@@ -158,7 +155,6 @@
     <div class="content">
         <h1>poetisch</h1>
         <div class="titles">
-            <!-- Gedicht-Titel mit Links zu den Dateien -->
             <a href="#" data-file="Gedichte/01 Schutzengel.txt">Schutzengel</a>
             <a href="#" data-file="Gedichte/02 There is a land.txt">There is a land</a>
             <a href="#" data-file="Gedichte/03 Hinter den Dünen.txt">Hinter den Dünen</a>
@@ -174,7 +170,6 @@
         </div>
     </div>
 
-    <!-- Lightbox -->
     <div class="lightbox">
         <div class="lightbox-content"></div>
         <a href="#" class="lightbox-close">&times;</a>
