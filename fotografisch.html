@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebekka Schneider - Fotografisch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #7FB5B5;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #7FB5B5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: none;
+        }
+
+        .logo-small {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            margin: 0;
+            color: #333;
+        }
+
+        .content {
+            margin-top: 80px; /* Platz für den fixierten Header */
+            padding: 20px;
+        }
+
+        .content h1 {
+            font-size: 30px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            /* passt sich flexibel an die Bildschirmbreite an */
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Lightbox Styling */
+        .lightbox {
+            display: none; /* Unsichtbar, bis aktiv */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #7FB5B5; /* angepasster Hintergrundton */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox:target {
+            display: flex; /* Sichtbar, wenn auf #lightboxX verlinkt wird */
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Sanftes Einblenden der Seite
+            setTimeout(() => {
+                document.body.style.opacity = 1;
+            }, 50);
+
+            // Sanftes Ausblenden beim Klick auf Links
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && !href.startsWith('#')) { 
+                        e.preventDefault();
+                        document.body.style.opacity = 0;
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 1000);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+            <img src="Logo_Rebekka-transp.png" alt="Rebekka Logo" class="logo-small">
+            <h1>Rebekka Schneider</h1>
+        </a>
+    </div>
+
+    <div class="content">
+        <h1>fotografisch</h1>
+
+        <!-- GALLERY -->
+        <div class="gallery">
+            <!-- 21 Bilder von Foto01.jpg bis Foto21.jpg -->
+            <a href="#lightbox1"><img src="Fotos/Foto01.jpg" alt="Foto 01"></a>
+            <a href="#lightbox2"><img src="Fotos/Foto02.jpg" alt="Foto 02"></a>
+            <a href="#lightbox3"><img src="Fotos/Foto03.jpg" alt="Foto 03"></a>
+            <a href="#lightbox4"><img src="Fotos/Foto04.jpg" alt="Foto 04"></a>
+            <a href="#lightbox5"><img src="Fotos/Foto05.jpg" alt="Foto 05"></a>
+            <a href="#lightbox6"><img src="Fotos/Foto06.jpg" alt="Foto 06"></a>
+            <a href="#lightbox7"><img src="Fotos/Foto07.jpg" alt="Foto 07"></a>
+            <a href="#lightbox8"><img src="Fotos/Foto08.jpg" alt="Foto 08"></a>
+            <a href="#lightbox9"><img src="Fotos/Foto09.jpg" alt="Foto 09"></a>
+            <a href="#lightbox10"><img src="Fotos/Foto10.jpg" alt="Foto 10"></a>
+            <a href="#lightbox11"><img src="Fotos/Foto11.jpg" alt="Foto 11"></a>
+            <a href="#lightbox12"><img src="Fotos/Foto12.jpg" alt="Foto 12"></a>
+            <a href="#lightbox13"><img src="Fotos/Foto13.jpg" alt="Foto 13"></a>
+            <a href="#lightbox14"><img src="Fotos/Foto14.jpg" alt="Foto 14"></a>
+            <a href="#lightbox15"><img src="Fotos/Foto15.jpg" alt="Foto 15"></a>
+            <a href="#lightbox16"><img src="Fotos/Foto16.jpg" alt="Foto 16"></a>
+            <a href="#lightbox17"><img src="Fotos/Foto17.jpg" alt="Foto 17"></a>
+            <a href="#lightbox18"><img src="Fotos/Foto18.jpg" alt="Foto 18"></a>
+            <a href="#lightbox19"><img src="Fotos/Foto19.jpg" alt="Foto 19"></a>
+            <a href="#lightbox20"><img src="Fotos/Foto20.jpg" alt="Foto 20"></a>
+            <a href="#lightbox21"><img src="Fotos/Foto21.jpg" alt="Foto 21"></a>
+        </div>
+
+        <!-- LIGHTBOX-Bereiche -->
+        <div id="lightbox1" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto01.jpg" alt="Foto 01">
+        </div>
+        <div id="lightbox2" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto02.jpg" alt="Foto 02">
+        </div>
+        <div id="lightbox3" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto03.jpg" alt="Foto 03">
+        </div>
+        <div id="lightbox4" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto04.jpg" alt="Foto 04">
+        </div>
+        <div id="lightbox5" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto05.jpg" alt="Foto 05">
+        </div>
+        <div id="lightbox6" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto06.jpg" alt="Foto 06">
+        </div>
+        <div id="lightbox7" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto07.jpg" alt="Foto 07">
+        </div>
+        <div id="lightbox8" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto08.jpg" alt="Foto 08">
+        </div>
+        <div id="lightbox9" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto09.jpg" alt="Foto 09">
+        </div>
+        <div id="lightbox10" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto10.jpg" alt="Foto 10">
+        </div>
+        <div id="lightbox11" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto11.jpg" alt="Foto 11">
+        </div>
+        <div id="lightbox12" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto12.jpg" alt="Foto 12">
+        </div>
+        <div id="lightbox13" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto13.jpg" alt="Foto 13">
+        </div>
+        <div id="lightbox14" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto14.jpg" alt="Foto 14">
+        </div>
+        <div id="lightbox15" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto15.jpg" alt="Foto 15">
+        </div>
+        <div id="lightbox16" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto16.jpg" alt="Foto 16">
+        </div>
+        <div id="lightbox17" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto17.jpg" alt="Foto 17">
+        </div>
+        <div id="lightbox18" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto18.jpg" alt="Foto 18">
+        </div>
+        <div id="lightbox19" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto19.jpg" alt="Foto 19">
+        </div>
+        <div id="lightbox20" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto20.jpg" alt="Foto 20">
+        </div>
+        <div id="lightbox21" class="lightbox">
+            <a href="#" class="lightbox-close">&times;</a>
+            <img src="Fotos/Foto21.jpg" alt="Foto 21">
+        </div>
+    </div>
+</body>
+</html>
