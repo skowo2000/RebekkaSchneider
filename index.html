@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -9,11 +8,11 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #7FB5B5; /* Ein Farbton zwischen Lichtgrün und Pastelltürkis */
+            background-color: #7FB5B5;
             margin: 0;
             padding: 0;
-            opacity: 0; /* Unsichtbar beim Start */
-            transition: opacity 0.5s ease-in-out; /* Übergang für Ein- und Ausblenden */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
 
         .container {
@@ -24,7 +23,7 @@
             position: relative;
             font-size: 30px;
             margin: 0;
-            white-space: nowrap
+            white-space: nowrap;
         }
 
         .default-text,
@@ -42,7 +41,7 @@
 
         .hover-text {
             opacity: 0;
-            font-family: "Dancing Script", cursive; /* Handschriftliche Schriftart */
+            font-family: "Dancing Script", cursive;
         }
 
         h1:hover .default-text {
@@ -55,13 +54,12 @@
 
         .logo {
             width: 200px;
-            max-width: 100%; /* Verhindert Überlaufen auf mobilen Geräten */
             height: auto;
-            margin: 50px auto 20px; /* Verschiebe das Logo mit margin-top */
+            margin: 50px auto 20px;
         }
 
         .links {
-            margin-top: 0px;
+            margin-top: 20px;
         }
 
         .links a {
@@ -76,33 +74,40 @@
             color: #007acc;
         }
 
-        @media (max-width: 800px) {
+        @media (max-width: 600px) {
             h1 {
-                font-size: 24px; /* Kleinere Schrift für Mobilgeräte */
+                font-size: 24px;
             }
             .links a {
-                font-size: 13px; /* Kleinere Schrift für Links */
-                margin: 0 2px; /* Weniger Abstand zwischen den Links */
+                font-size: 14px;
+                margin: 0 5px;
             }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Sanftes Einblenden der Seite
+            // Einblenden bei regulärem Laden
             setTimeout(() => {
                 document.body.style.opacity = 1;
             }, 50);
 
+            // Einblenden bei Zurück-Taste (Cache)
+            window.addEventListener('pageshow', function (event) {
+                if (event.persisted) {
+                    document.body.style.opacity = 1;
+                }
+            });
+
             // Sanftes Ausblenden beim Klick auf einen Link
             document.querySelectorAll('.links a').forEach(link => {
                 link.addEventListener('click', function (e) {
-                    e.preventDefault(); // Standard-Link-Verhalten stoppen
-                    const href = this.href; // Ziel-URL speichern
-                    document.body.style.opacity = 0; // Seite ausblenden
+                    e.preventDefault();
+                    const href = this.href;
+                    document.body.style.opacity = 0;
                     setTimeout(() => {
-                        window.location.href = href; // Neue Seite nach 500ms laden
-                    }, 500); // Timeout entspricht der CSS-Übergangszeit
+                        window.location.href = href;
+                    }, 500);
                 });
             });
         });
